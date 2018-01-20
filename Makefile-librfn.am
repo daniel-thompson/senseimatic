@@ -1,0 +1,49 @@
+#
+# Makefile-librfn.am
+#
+# Part of librfn (a general utility library from redfelineninja.org.uk)
+#
+# Copyright (C) 2012, 2013 Daniel Thompson <daniel@redfelineninja.org.uk> 
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+
+
+#
+# librfn.a
+#
+
+noinst_LIBRARIES += librfn/librfn/librfn.a
+
+LIBRFN_CFLAGS = -I$(top_srcdir)/librfn/include
+LIBRFN_LIBS = $(top_builddir)/librfn/librfn/librfn.a
+
+librfn_librfn_librfn_a_CPPFLAGS = $(LIBRFN_CFLAGS)
+
+librfn_librfn_librfn_a_SOURCES = \
+	librfn/librfn/benchmark.c \
+	librfn/librfn/bitops.c \
+	librfn/librfn/console.c \
+	librfn/librfn/posix/console_posix.c \
+	librfn/librfn/enum.c \
+	librfn/librfn/fibre.c \
+	librfn/librfn/fuzz.c \
+	librfn/librfn/hex.c \
+	librfn/librfn/list.c \
+	librfn/librfn/messageq.c \
+	librfn/librfn/pack.c \
+	librfn/librfn/rand.c \
+	librfn/librfn/regdump.c \
+	librfn/librfn/ringbuf.c \
+	librfn/librfn/string.c \
+	librfn/librfn/wavheader.c \
+	librfn/librfn/util.c
+
+if HAVE_CLOCK_GETTIME
+librfn_librfn_librfn_a_SOURCES += \
+	librfn/librfn/posix/fibre_posix.c \
+	librfn/librfn/posix/time_posix.c
+endif
